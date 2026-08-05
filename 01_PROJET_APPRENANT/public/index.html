@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VisitFrance, assistant de voyage propulsé par une IA">
+  <title>VisitFrance — Assistant de voyage IA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">VF</div>
+        <div>
+          <p class="brand-name">VisitFrance</p>
+          <p class="brand-subtitle">Assistant de voyage IA</p>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <span class="status-dot" aria-hidden="true"></span>
+        <div>
+          <strong>Service opérationnel</strong>
+          <p>API connectée et prête à répondre.</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Navigation secondaire">
+        <button class="nav-item active" type="button">
+          <span aria-hidden="true">💬</span>
+          Nouvelle conversation
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p>
+          Les réponses sont informatives et ne remplacent pas l'avis d'un professionnel.
+        </p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Votre assistant spécialisé</p>
+          <h1>Parlons de votre séjour</h1>
+        </div>
+        <button id="reset-button" class="secondary-button" type="button">
+          Réinitialiser
+        </button>
+      </header>
+
+      <section class="chat-card" aria-label="Conversation avec ImmoNova">
+        <div id="conversation" class="conversation" aria-live="polite">
+          <article class="message assistant-message">
+            <div class="avatar assistant-avatar" aria-hidden="true">VF</div>
+            <div class="message-content">
+              <div class="message-meta">
+                <strong>VisitFrance</strong>
+                <span>Assistant de voyage</span>
+              </div>
+              <div class="bubble">
+                <p>Bonjour ! Je peux vous aider à organiser votre séjour et à trouver des activités.<br>Dites moi ce que vous souhaitez faire et je vous aiderai à préparer votre voyage.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <form id="chat-form" class="composer">
+          <label class="sr-only" for="prompt">Votre message</label>
+          <div class="input-wrapper">
+            <textarea
+              id="prompt"
+              rows="2"
+              required
+              placeholder="Écrivez votre question..."
+            ></textarea>
+            <button id="submit-button" class="send-button" type="submit" aria-label="Envoyer le message">
+              Envoyer
+            </button>
+          </div>
+
+          <div class="composer-footer">
+            <p>Entrée pour envoyer · Maj + Entrée pour revenir à la ligne</p>
+            <p id="status" role="status"></p>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
