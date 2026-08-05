@@ -18,19 +18,17 @@ export async function generateAnswer(req, res) {
         return res.status(400).json({ success: false, error: { code: "INVALID_MESSAGE", message: "Chaque objet du tableau messages doit contenir un rôle autorisé et un contenu non vide." } });
       }
     }
+    
+    let cleanMessages = [];
 
-    let cleanMessages = messages.map(({ role, content }) => ({ role, content: content.trim() }));
-
-    if (cleanMessages.length > process.env.MAX_MESSAGES) {
-      // cleanMessages = messages.slice(1, process.env.MAX_MESSAGES);
-      console.log("if", cleanMessages);
+    if (messages.length > process.env.MAX_MESSAGES) {
+      cleanMessages = messages.map(({ role, content }) => ({ role, content: content.trim() })).slice(-process.env.MAX_MESSAGES);
     }
     else {
-      // cleanMessages = messages.map(({ role, content }) => ({ role, content: content.trim() }));
-      console.log("else", cleanMessages);
+      cleanMessages = messages.map(({ role, content }) => ({ role, content: content.trim() }));
     }
-    const answer = await askGroq(cleanMessages);
 
+    const answer = await askGroq(cleanMessages);
 
     return res.status(200).json({ success: true, data: { answer } });
   } catch (error) {
