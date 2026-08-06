@@ -1,9 +1,12 @@
+const profileIcon = "/assets/profile.svg";
+const robotIcon = "/assets/robot.svg";
 const form = document.querySelector("#chat-form");
 const promptInput = document.querySelector("#prompt");
 const statusElement = document.querySelector("#status");
 const conversationElement = document.querySelector("#conversation");
 const submitButton = document.querySelector("#submit-button");
 const resetButton = document.querySelector("#reset-button");
+const newConvButton = document.querySelector('#new-conv');
 const suggestionChips = document.querySelectorAll(".suggestion-chip");
 
 let loadingMessage = null;
@@ -20,8 +23,13 @@ function createMessage(role, content) {
   const article = document.createElement("article");
   article.className = `message ${role}-message`;
   const avatar = document.createElement("div");
+  const icon = role == 'assistant' ? robotIcon : profileIcon;
+  const image = document.createElement("img");
+  image.src = icon;
+  image.alt = "";
+  image.className = "avatar-image";
+  avatar.appendChild(image);
   avatar.className = `avatar ${role}-avatar`;
-  avatar.textContent = role === "user" ? "Vous" : "VF";
   avatar.setAttribute("aria-hidden", "true");
   const contentWrapper = document.createElement("div");
   contentWrapper.className = "message-content";
@@ -67,6 +75,12 @@ promptInput.addEventListener("keydown", (event) => { if (event.key === "Enter" &
 promptInput.addEventListener("input", adjustPromptHeight);
 suggestionChips.forEach((chip) => chip.addEventListener("click", () => { promptInput.value = chip.textContent.trim(); sendMessage(); }));
 resetButton.addEventListener("click", () => {
+  conversationHistory = [];
+  localStorage.removeItem("chatHistory");
+  conversationElement.innerHTML = `<article class="message assistant-message"><div class="avatar assistant-avatar" aria-hidden="true">VF</div><div class="message-content"><div class="bubble"><span class="sr-only">VisitFrance : </span><p>La conversation et sa mémoire ont été réinitialisées. Comment puis-je vous aider ?</p></div></div></article>`;
+  promptInput.focus();
+});
+newConvButton.addEventListener("click", () => {
   conversationHistory = [];
   localStorage.removeItem("chatHistory");
   conversationElement.innerHTML = `<article class="message assistant-message"><div class="avatar assistant-avatar" aria-hidden="true">VF</div><div class="message-content"><div class="bubble"><span class="sr-only">VisitFrance : </span><p>La conversation et sa mémoire ont été réinitialisées. Comment puis-je vous aider ?</p></div></div></article>`;
