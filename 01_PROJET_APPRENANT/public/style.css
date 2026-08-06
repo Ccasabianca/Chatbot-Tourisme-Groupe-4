@@ -34,18 +34,8 @@
   --serif: "Playfair Display", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --sans: Inter, "Segoe UI", system-ui, Arial, sans-serif;
 
-  --image-fond:
-    linear-gradient(90deg, rgba(27, 75, 158, .22) 296px, rgba(27, 75, 158, 0) 640px),
-    linear-gradient(270deg, rgba(200, 16, 46, .20) 0, rgba(200, 16, 46, 0) 380px);
+  --image-fond: url('https://media.nomadicmatt.com/2024/versaillesmain.jpeg');
   --opacite-fond: 1;
-
-  --masque-marges: linear-gradient(90deg,
-      #000 0,
-      #000 calc(50% + 148px - 600px),
-      transparent calc(50% + 148px - 540px),
-      transparent calc(50% + 148px + 540px),
-      #000 calc(50% + 148px + 600px),
-      #000 100%);
 }
 
 body {
