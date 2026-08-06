@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="VisitFrance, assistant de voyage propulsé par une IA">
+  <meta name="theme-color" content="#0e1e3c">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <title>VisitFrance — Assistant de voyage IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,21 +19,14 @@
         <div class="brand-mark" aria-hidden="true">VF</div>
         <div>
           <p class="brand-name">VisitFrance</p>
-          <p class="brand-subtitle">Assistant de voyage IA</p>
+          <p class="brand-subtitle">Assistant de voyage</p>
         </div>
       </div>
 
-      <div class="sidebar-card">
-        <span class="status-dot" aria-hidden="true"></span>
-        <div>
-          <strong>Service opérationnel</strong>
-          <p>API connectée et prête à répondre.</p>
-        </div>
-      </div>
-
+      <p class="sidebar-title">Conversation</p>
       <nav class="sidebar-nav" aria-label="Navigation secondaire">
         <button class="nav-item active" type="button">
-          <span aria-hidden="true">💬</span>
+          <span aria-hidden="true">✳</span>
           Nouvelle conversation
         </button>
       </nav>
@@ -51,20 +49,24 @@
         </button>
       </header>
 
-      <section class="chat-card" aria-label="Conversation avec ImmoNova">
+      <section class="chat-card" aria-label="Conversation avec VisitFrance">
         <div id="conversation" class="conversation" aria-live="polite">
           <article class="message assistant-message">
             <div class="avatar assistant-avatar" aria-hidden="true">VF</div>
             <div class="message-content">
-              <div class="message-meta">
-                <strong>VisitFrance</strong>
-                <span>Assistant de voyage</span>
-              </div>
               <div class="bubble">
+                <span class="sr-only">VisitFrance : </span>
                 <p>Bonjour ! Je peux vous aider à organiser votre séjour et à trouver des activités.<br>Dites moi ce que vous souhaitez faire et je vous aiderai à préparer votre voyage.</p>
               </div>
             </div>
           </article>
+        </div>
+
+        <div class="suggestions" role="group" aria-label="Suggestions de questions">
+          <button class="suggestion-chip" type="button">Un week-end à Paris</button>
+          <button class="suggestion-chip" type="button">Randonnées dans les Alpes</button>
+          <button class="suggestion-chip" type="button">Châteaux de la Loire en 3 jours</button>
+          <button class="suggestion-chip" type="button">Où manger à Marseille ?</button>
         </div>
 
         <form id="chat-form" class="composer">
@@ -72,7 +74,7 @@
           <div class="input-wrapper">
             <textarea
               id="prompt"
-              rows="2"
+              rows="1"
               required
               placeholder="Écrivez votre question..."
             ></textarea>
