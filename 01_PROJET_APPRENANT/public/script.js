@@ -77,13 +77,15 @@ suggestionChips.forEach((chip) => chip.addEventListener("click", () => { promptI
 resetButton.addEventListener("click", () => {
   conversationHistory = [];
   localStorage.removeItem("chatHistory");
-  conversationElement.innerHTML = `<article class="message assistant-message"><div class="avatar assistant-avatar" aria-hidden="true">VF</div><div class="message-content"><div class="bubble"><span class="sr-only">VisitFrance : </span><p>La conversation et sa mémoire ont été réinitialisées. Comment puis-je vous aider ?</p></div></div></article>`;
+  conversationElement.innerHTML = '';
+  addMessage('assistant', 'La conversation et sa mémoire ont été réinitialisées. Comment puis-je vous aider ?')
   promptInput.focus();
 });
 newConvButton.addEventListener("click", () => {
   conversationHistory = [];
   localStorage.removeItem("chatHistory");
-  conversationElement.innerHTML = `<article class="message assistant-message"><div class="avatar assistant-avatar" aria-hidden="true">VF</div><div class="message-content"><div class="bubble"><span class="sr-only">VisitFrance : </span><p>La conversation et sa mémoire ont été réinitialisées. Comment puis-je vous aider ?</p></div></div></article>`;
+  conversationElement.innerHTML = '';
+  addMessage('assistant', 'La conversation et sa mémoire ont été réinitialisées. Comment puis-je vous aider ?');
   promptInput.focus();
 });
 
