@@ -53,6 +53,8 @@ async function sendMessage() {
     if (!response.ok) throw new Error(data.error?.message || "Une erreur est survenue.");
     hideLoadingMessage(); addMessage("assistant", data.data.answer);
     conversationHistory.push({ role: "assistant", content: data.data.answer });
+    // Save history
+    localStorage.setItem('chatHistory', JSON.stringify(conversationHistory));
   } catch (error) {
     hideLoadingMessage(); addMessage("assistant", `Je n'ai pas pu répondre à votre demande : ${error.message}`);
   } finally { setLoading(false); promptInput.disabled = false; promptInput.focus(); }
@@ -61,6 +63,17 @@ form.addEventListener("submit", (event) => { event.preventDefault(); sendMessage
 promptInput.addEventListener("keydown", (event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); sendMessage(); } });
 resetButton.addEventListener("click", () => {
   conversationHistory = [];
+  localStorage.setItem('chatHistory', null);
   conversationElement.innerHTML = `<article class="message assistant-message"><div class="avatar assistant-avatar" aria-hidden="true">VF</div><div class="message-content"><div class="message-meta"><strong>VisitFrance</strong><span>Assistant de voyage</span></div><div class="bubble"><p>La conversation et sa mémoire ont été réinitialisées. Comment puis-je vous aider ?</p></div></div></article>`;
   promptInput.focus();
 });
+
+// Initialise saved history on chat load.
+function initChat() {
+  const savedHistory = JSON.parse(localStorage.getItem('chatHistory'));
+  if(!savedHistory) {
+    return
+  }
+  savedHistory.forEach(({ role, content }) => addMessage(role, content))
+}
+initChat();
